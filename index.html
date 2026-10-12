@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskPulse Pro | Enterprise Productivity Suite</title>
+
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Ambient Glow Background Effects -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <div class="app-wrapper">
+    <!-- Sidebar / Stats Panel -->
+    <aside class="sidebar">
+      <div class="brand-box">
+        <div class="brand-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+        <div class="brand-text">
+          <h1>TaskPulse<span>Pro</span></h1>
+          <p>Enterprise Workspace</p>
+        </div>
+      </div>
+
+      <div class="stats-card">
+        <h3>Productivity Analytics</h3>
+        <div class="progress-container">
+          <div class="progress-info">
+            <span>Completion Rate</span>
+            <span id="progressPercentage">0%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-val" id="totalCount">0</span>
+            <span class="stat-lbl">Total</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val" id="completedCount">0</span>
+            <span class="stat-lbl">Done</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val" id="pendingCount">0</span>
+            <span class="stat-lbl">Pending</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-actions">
+        <button class="btn btn-outline btn-block" id="exportBtn">
+          <i class="fa-solid fa-download"></i> Export Data (JSON)
+        </button>
+        <button class="btn btn-danger-outline btn-block" id="clearCompletedBtn">
+          <i class="fa-solid fa-trash-can"></i> Clear Completed
+        </button>
+      </div>
+
+      <div class="sidebar-footer">
+        <p>Secured with LocalStorage Persistence</p>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="main-content">
+      <!-- Top Header & Search Bar -->
+      <header class="top-header">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Search tasks by title or tag...">
+        </div>
+        <div class="user-profile">
+          <span class="status-dot"></span>
+          <span>Workspace Active</span>
+        </div>
+      </header>
+
+      <!-- Task Input Form Card -->
+      <section class="task-form-card">
+        <h2>Create New Task</h2>
+        <form id="taskForm">
+          <div class="form-row">
+            <div class="form-group flex-grow">
+              <input type="text" id="taskTitleInput" required placeholder="What needs to be engineered or executed today?">
+            </div>
+            <div class="form-group">
+              <select id="taskCategoryInput">
+                <option value="Work">💼 Work</option>
+                <option value="Personal">🏡 Personal</option>
+                <option value="Urgent">🔥 Urgent</option>
+                <option value="Innovation">🚀 Innovation</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select id="taskPriorityInput">
+                <option value="High">High Priority</option>
+                <option value="Medium" selected>Medium Priority</option>
+                <option value="Low">Low Priority</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-plus"></i> Add Task
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Filters & Task List Area -->
+      <section class="tasks-section">
+        <div class="filter-header">
+          <div class="filter-tabs" id="filterTabs">
+            <button class="filter-tab active" data-filter="all">All Tasks</button>
+            <button class="filter-tab" data-filter="pending">Pending</button>
+            <button class="filter-tab" data-filter="completed">Completed</button>
+          </div>
+          <div class="task-count-indicator">
+            Showing <span id="visibleCount">0</span> items
+          </div>
+        </div>
+
+        <div class="tasks-container" id="tasksContainer">
+          <!-- Dynamically Injected Tasks Will Appear Here -->
+        </div>
+
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <div class="empty-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+          <h3>No tasks found</h3>
+          <p>You're completely caught up! Add a new task above to get started.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toastNotification">Action completed successfully</div>
+
+  <!-- JavaScript Application Logic -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
